@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Espanhol Online</title>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="app">
+      <header>
+        <h1>Espanhol Online</h1>
+        <p>Profesor Luis González</p>
+        <p>(31) 9 9954 9579</p>
+      </header>
+      
+      <div id="chat-container">
+        <div id="messages" class="empty-state">
+          <div class="welcome-message">
+            <p>¡Hola! Soy el Profesor Luis González. Escribe o pega tu texto abajo y te ayudaré a corregirlo, explicarte los errores y ofrecerte mejores versiones.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="input-area">
+        <form id="chat-form">
+          <textarea 
+            id="user-input" 
+            placeholder="Escribe tu texto aquí para corregirlo..." 
+            rows="1"
+            required
+          ></textarea>
+          <button type="submit" id="send-btn" disabled>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2.01 21L23 12L2.01 3L2 10L17 12L2 14L2.01 21Z" fill="currentColor"/>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "@google/genai": "https://esm.sh/@google/genai@^0.7.0",
+          "marked": "https://esm.sh/marked@^15.0.7"
+        }
+      }
+    </script>
+    <script type="module" src="index.tsx"></script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
