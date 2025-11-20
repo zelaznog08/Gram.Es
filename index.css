@@ -40,6 +40,21 @@ header {
   border-bottom: 1px solid var(--border-color);
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-logo {
+  max-height: 80px;
+  width: auto;
+  object-fit: contain;
+  margin-left: 1rem;
 }
 
 header h1 {
