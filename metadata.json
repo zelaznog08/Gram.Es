@@ -1,5 +1,7 @@
 {
   "name": "Espanhol Online",
   "description": "Asistente de corrección de estilo con el Profesor Luis González",
-  "requestFramePermissions": []
+  "requestFramePermissions": [
+    "microphone"
+  ]
 }

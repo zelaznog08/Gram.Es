@@ -18,18 +18,102 @@
           <p>Profesor Luis González</p>
           <p>(31) 9 9954 9579</p>
         </div>
+        <div class="header-center">Diretório de Espanhol</div>
         <img src="https://i.ibb.co/NnKFmXgV/logo.png" alt="Logomarca Espanhol Online" class="header-logo" />
       </header>
       
-      <div id="chat-container">
+      <nav class="app-nav">
+        <button id="tab-translator" class="nav-tab active">Traductor</button>
+        <button id="tab-corrector" class="nav-tab">Corrector de Textos</button>
+        <button id="tab-grammar" class="nav-tab">Dudas de Gramática</button>
+        <button id="tab-culture" class="nav-tab">Modismos y Cultura</button>
+        <button id="tab-travel" class="nav-tab">Viajes y Cultura</button>
+        <button id="tab-contact" class="nav-tab">Contacto</button>
+      </nav>
+      
+      <!-- Standard Chat Container (Hidden by default now) -->
+      <div id="chat-container" class="hidden">
         <div id="messages" class="empty-state">
-          <div class="welcome-message">
-            <p>¡Hola! Soy el Profesor Luis González. Escribe o pega tu texto abajo y te ayudaré a corregirlo, explicarte los errores y ofrecerte mejores versiones.</p>
+          <!-- Content injected by JS -->
+        </div>
+      </div>
+
+      <!-- Translator Specific Container (Visible by default now) -->
+      <div id="translator-view">
+        <div class="translator-controls">
+          <span id="lang-source-label" class="lang-label">Español</span>
+          <button id="swap-lang-btn" title="Intercambiar idiomas">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 16V4M7 4L3 8M7 4L11 8M17 8V20M17 20L21 16M17 20L13 16"/>
+            </svg>
+          </button>
+          <span id="lang-target-label" class="lang-label">Portugués</span>
+        </div>
+
+        <div class="translator-grid">
+          <!-- Input Box -->
+          <div class="trans-box source-box">
+            <textarea id="trans-input" placeholder="Escribe o dicta algo..."></textarea>
+            <div class="box-actions">
+              <button id="trans-mic-btn" class="action-btn" title="Dictar">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 14C13.66 14 15 12.66 15 11V5C15 3.34 13.66 2 12 2C10.34 2 9 3.34 9 5V11C9 12.66 10.34 14 12 14Z"/>
+                  <path d="M19 10V11C19 14.87 15.87 18 12 18C8.13 18 5 14.87 5 11V10"/>
+                  <path d="M12 18V22"/>
+                  <path d="M8 22H16"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Output Box -->
+          <div class="trans-box target-box">
+            <div id="trans-output" class="output-content" data-placeholder="La traducción aparecerá aquí..."></div>
+            <div class="box-actions">
+              <button id="trans-speak-btn" class="action-btn" title="Escuchar">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M11 5L6 9H2V15H6L11 19V5Z"/>
+                  <path d="M19.07 4.93C20.9447 6.80527 21.9979 9.34836 21.9979 12C21.9979 14.6516 20.9447 17.1947 19.07 19.07"/>
+                  <path d="M15.54 8.46C16.4774 9.39764 17.004 10.6692 17.004 11.995C17.004 13.3208 16.4774 14.5924 15.54 15.53"/>
+                </svg>
+              </button>
+              <button id="trans-copy-btn" class="action-btn" title="Copiar">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                  <path d="M5 15H4C2.89543 15 2 14.1046 2 13V4C2 2.89543 2.89543 2 4 2H13C14.1046 2 15 2.89543 15 4V5"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <button id="do-translate-btn" class="main-translate-btn">Traducir</button>
+      </div>
+      
+      <!-- Contact View (Hidden by default) -->
+      <div id="contact-view" class="hidden">
+        <div class="contact-container">
+          <!-- Area 2: Direct Connection -->
+          <div class="contact-card social-section">
+            <h3>Te invito a conocer más de mi trabajo en mis redes sociales o escríbeme directamente.</h3>
+            
+            <div class="social-icons">
+              <a href="https://instabio.cc/40531145YEljL?" target="_blank" rel="noopener noreferrer" class="social-btn">
+                <img src="https://i.postimg.cc/1zc6qBST/logomarcafin.png" alt="Visita mis redes">
+                <span>Mis Redes</span>
+              </a>
+              
+              <a href="https://api.whatsapp.com/send?phone=553199549579" target="_blank" rel="noopener noreferrer" class="social-btn">
+                <img src="https://i.postimg.cc/52d81GKH/3.png" alt="Escríbeme al WhatsApp">
+                <span>WhatsApp</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
 
-      <div id="input-area">
+      <!-- Standard Chat Input (Hidden when in Translator/Contact mode) -->
+      <div id="input-area" class="hidden">
         <form id="chat-form">
           <textarea 
             id="user-input" 
@@ -37,6 +121,16 @@
             rows="1"
             required
           ></textarea>
+          
+          <button type="button" id="mic-btn" title="Activar micrófono">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 14C13.66 14 15 12.66 15 11V5C15 3.34 13.66 2 12 2C10.34 2 9 3.34 9 5V11C9 12.66 10.34 14 12 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M19 10V11C19 14.87 15.87 18 12 18C8.13 18 5 14.87 5 11V10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 18V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M8 22H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
           <button type="submit" id="send-btn" disabled>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M2.01 21L23 12L2.01 3L2 10L17 12L2 14L2.01 21Z" fill="currentColor"/>
